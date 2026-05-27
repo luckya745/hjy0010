@@ -9,6 +9,7 @@ data/
 *.xml
 *.pdf
 *.txt
+!requirements.txt
 *.xlsx
 *.hwp
 *.hwpx
