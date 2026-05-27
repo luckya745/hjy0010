@@ -17,7 +17,7 @@ def run():
             
     with col2:
         st.subheader("📝 생애 주기별 내러티브 작성")
-        tab1, tab2, tab3 = st.tabs(["10대", "20대", "30대"])
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["10대", "20대", "30대", "40대", "50대"])
         
         with tab1:
             st.write("**주요 사건:** 1970년대 대한민국 수출액 및 산업구조 변화")
@@ -30,6 +30,14 @@ def run():
         with tab3:
             st.write("**주요 사건:** 1997년 외환위기 당시 실업률 및 환율 변동")
             st.text_area("당시 데이터가 인물의 삶에 미친 영향  ", placeholder="데이터를 바탕으로 추론한 내용을 적어보세요...", height=150)
+            
+        with tab4:
+            st.write("**주요 사건:** 2000년대 IT 벤처 붐 및 글로벌 금융위기")
+            st.text_area("당시 데이터가 인물의 삶에 미친 영향   ", placeholder="데이터를 바탕으로 추론한 내용을 적어보세요...", height=150)
+            
+        with tab5:
+            st.write("**주요 사건:** 2010년대 저성장·고령화 사회 진입 및 4차 산업혁명")
+            st.text_area("당시 데이터가 인물의 삶에 미친 영향    ", placeholder="데이터를 바탕으로 추론한 내용을 적어보세요...", height=150)
             
     st.divider()
     st.subheader("🖋️ 최종 내러티브 완성")
