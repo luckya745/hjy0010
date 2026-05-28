@@ -48,12 +48,13 @@ def main():
     st.sidebar.markdown('<p class="sidebar-title">AI 역사 수업</p>', unsafe_allow_html=True)
     st.sidebar.write("수업 모형을 선택하세요:")
     
-    # 4가지 메인 탭 메뉴 구성
+    # 5가지 메인 탭 메뉴 구성
     menu = [
-        "1. 데이터 과학 활용 사료 탐구 분석기",
-        "2. 인물 기반 내러티브 서술기",
-        "3. AI 챗봇 기반 질문 탐구학습 서술기",
-        "4. 질문 기반 AI 도구 활용 탐구학습 서술기"
+        "1. 연수교재 본문 확인하기",
+        "2. 데이터 과학 활용 사료 탐구 분석기",
+        "3. 인물 기반 내러티브 서술기",
+        "4. AI 챗봇 기반 질문 탐구학습 서술기",
+        "5. 질문 기반 AI 도구 활용 탐구학습 서술기"
     ]
     
     choice = st.sidebar.radio("모드 선택", menu)
@@ -70,15 +71,18 @@ def main():
     
     # 선택된 메뉴에 따라 해당 모듈 동적 로드 및 실행
     if choice == menu[0]:
+        from tabs import tab0_textbook
+        tab0_textbook.run()
+    elif choice == menu[1]:
         from tabs import tab1_data_analysis
         tab1_data_analysis.run()
-    elif choice == menu[1]:
+    elif choice == menu[2]:
         from tabs import tab2_persona_narrative
         tab2_persona_narrative.run()
-    elif choice == menu[2]:
+    elif choice == menu[3]:
         from tabs import tab3_ai_chatbot
         tab3_ai_chatbot.run()
-    elif choice == menu[3]:
+    elif choice == menu[4]:
         from tabs import tab4_question_inquiry
         tab4_question_inquiry.run()
 
