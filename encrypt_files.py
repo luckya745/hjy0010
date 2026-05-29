@@ -15,12 +15,25 @@ def encrypt_file(file_path, key):
     with open(file_path + ".enc", "wb") as file:
         file.write(encrypted_data)
 
+def get_or_generate_key():
+    """Reads existing key from secrets.toml or generates a new one"""
+    secrets_path = os.path.join(os.path.dirname(__file__), ".streamlit", "secrets.toml")
+    if os.path.exists(secrets_path):
+        with open(secrets_path, "r", encoding="utf-8") as f:
+            for line in f:
+                if line.startswith("ENCRYPTION_KEY"):
+                    key_str = line.split("=", 1)[1].strip().strip('"').strip("'")
+                    return key_str.encode()
+                    
+    key = Fernet.generate_key()
+    return key
+
 if __name__ == "__main__":
     base_path = os.path.dirname(__file__)
     tabs_path = os.path.join(base_path, "tabs")
     
-    # Generate a key
-    key = generate_key()
+    # Get or Generate a key
+    key = get_or_generate_key()
     
     print("\n" + "="*50)
     print("IMPORTANT: Copy the encryption key below and save it to .streamlit/secrets.toml")
