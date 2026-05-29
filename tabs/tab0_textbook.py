@@ -58,6 +58,22 @@ def run():
                     if st.button("이동", key=f"go_{prefix}{chap_idx}", use_container_width=True):
                         st.session_state[page_key] = search_page - 1
                         st.rerun()
+                        
+                word_col1, word_col2 = st.columns([3, 1])
+                with word_col1:
+                    search_word = st.text_input("단어 검색", placeholder="검색할 단어 입력", key=f"word_search_{prefix}{chap_idx}", label_visibility="collapsed")
+                with word_col2:
+                    if st.button("검색", key=f"word_go_{prefix}{chap_idx}", use_container_width=True):
+                        found_idx = -1
+                        for idx, page_content in enumerate(pages):
+                            if search_word and search_word.lower() in page_content.lower():
+                                found_idx = idx
+                                break
+                        if found_idx != -1:
+                            st.session_state[page_key] = found_idx
+                            st.rerun()
+                        elif search_word:
+                            st.warning(f"'{search_word}' 단어를 찾을 수 없습니다.")
         else:
             st.markdown(content_str)
             
