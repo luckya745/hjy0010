@@ -19,7 +19,7 @@ def run():
     
     def render_content(content_str, is_full_mode, chap_idx, is_local=False):
         import re
-        pages = re.split(r'\n+---PAGE_BREAK---\n+', content_str)
+        pages = re.split(r'\s*---PAGE_BREAK---\s*', content_str)
         if is_full_mode and len(pages) > 1:
             prefix = "local_" if is_local else ""
             page_key = f"chap_{prefix}{chap_idx}_page"
