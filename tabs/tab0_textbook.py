@@ -47,6 +47,17 @@ def run():
                     if st.button("다음 페이지 ➡️", key=f"next_{prefix}{chap_idx}"):
                         st.session_state[page_key] += 1
                         st.rerun()
+                        
+            st.markdown("<br>", unsafe_allow_html=True)
+            search_col1, search_col2, search_col3 = st.columns([1.5, 2, 1.5])
+            with search_col2:
+                sub_col1, sub_col2 = st.columns([3, 1])
+                with sub_col1:
+                    search_page = st.number_input("페이지 이동", min_value=1, max_value=len(pages), value=current_page + 1, step=1, key=f"search_{prefix}{chap_idx}", label_visibility="collapsed")
+                with sub_col2:
+                    if st.button("이동", key=f"go_{prefix}{chap_idx}", use_container_width=True):
+                        st.session_state[page_key] = search_page - 1
+                        st.rerun()
         else:
             st.markdown(content_str)
             
