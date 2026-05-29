@@ -18,10 +18,17 @@ def run():
     fernet = Fernet(enc_key) if enc_key else None
     
     for i in range(6):
-        enc_file_path = os.path.join(base_path, f"ch{i+1}.md.enc")
-        file_path = os.path.join(base_path, f"ch{i+1}.md") # 로컬 원본 파일 (개발용 폴백)
-        
         with tabs[i]:
+            view_mode = st.radio(f"제 {i+1}장 보기 옵션", ["요약본", "전체본"], horizontal=True, key=f"view_mode_{i}")
+            
+            if view_mode == "전체본":
+                target_file = f"ch{i+1}_full.md"
+            else:
+                target_file = f"ch{i+1}.md"
+                
+            enc_file_path = os.path.join(base_path, f"{target_file}.enc")
+            file_path = os.path.join(base_path, target_file)
+            
             if os.path.exists(enc_file_path):
                 if fernet:
                     try:
@@ -29,6 +36,9 @@ def run():
                             encrypted_data = f.read()
                         decrypted_data = fernet.decrypt(encrypted_data)
                         content = decrypted_data.decode("utf-8")
+                        
+                        # Use a container with max height for full text to prevent overly long pages if desired,
+                        # but standard markdown is fine.
                         st.markdown(content)
                     except Exception as e:
                         st.error(f"데이터 복호화 중 오류가 발생했습니다. (키를 확인하세요) : {e}")
@@ -40,4 +50,4 @@ def run():
                     content = f.read()
                 st.markdown(content)
             else:
-                st.error(f"제 {i+1}장 데이터를 불러올 수 없습니다.")
+                st.error(f"제 {i+1}장 ({view_mode}) 데이터를 불러올 수 없습니다.")

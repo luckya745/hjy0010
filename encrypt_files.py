@@ -40,14 +40,15 @@ if __name__ == "__main__":
     print("ENCRYPTION_KEY = \"" + key.decode() + "\"")
     print("="*50 + "\n")
     
-    # Encrypt ch1.md ~ ch6.md
+    # Encrypt ch1.md ~ ch6.md and ch1_full.md ~ ch6_full.md
     for i in range(1, 7):
-        file_name = f"ch{i}.md"
-        file_path = os.path.join(tabs_path, file_name)
-        if os.path.exists(file_path):
-            encrypt_file(file_path, key)
-            print(f"[OK] {file_name} encrypted -> {file_name}.enc")
-        else:
-            print(f"[FAIL] {file_name} not found.")
+        for suffix in ["", "_full"]:
+            file_name = f"ch{i}{suffix}.md"
+            file_path = os.path.join(tabs_path, file_name)
+            if os.path.exists(file_path):
+                encrypt_file(file_path, key)
+                print(f"[OK] {file_name} encrypted -> {file_name}.enc")
+            else:
+                print(f"[FAIL] {file_name} not found.")
     
     print("\nDone. Check the tabs folder for .enc files.")
