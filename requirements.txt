@@ -10,3 +10,4 @@ scikit-learn
 hanja
 google-generativeai
 openai
+cryptography>=41.0.0

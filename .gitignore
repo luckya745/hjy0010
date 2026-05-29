@@ -13,6 +13,7 @@ data/
 *.xlsx
 *.hwp
 *.hwpx
+tabs/*.md
 
 # Python cache
 __pycache__/
