@@ -10,7 +10,7 @@ def run():
     
     # 임시 UI 구성
     st.subheader("1. 데이터 파일 업로드")
-    uploaded_file = st.file_uploader("사료 데이터 파일(CSV, XML, TXT) 업로드", type=['csv', 'xml', 'txt'])
+    uploaded_file = st.file_uploader("사료 데이터 파일(CSV, XML, TXT, Excel, PDF, PPT) 업로드", type=['csv', 'xml', 'txt', 'xlsx', 'xls', 'pdf', 'pptx', 'ppt'])
     
     if uploaded_file is not None:
         st.success("파일이 성공적으로 업로드되었습니다.")
